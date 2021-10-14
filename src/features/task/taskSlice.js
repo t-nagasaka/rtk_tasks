@@ -14,6 +14,7 @@ export const fetchAsyncGet = createAsyncThunk("task/get", async () => {
 });
 
 export const fetchAsyncCreate = createAsyncThunk("task/post", async (task) => {
+  console.log(task);
   const res = await axios.post(apiUrl, task, {
     headers: {
       "Content-Type": "application/json",
@@ -24,6 +25,7 @@ export const fetchAsyncCreate = createAsyncThunk("task/post", async (task) => {
 });
 
 export const fetchAsyncUpdate = createAsyncThunk("task/put", async (task) => {
+  console.log(task);
   const res = await axios.put(`${apiUrl}${task.id}/`, task, {
     headers: {
       "Content-Type": "application/json",
@@ -33,15 +35,18 @@ export const fetchAsyncUpdate = createAsyncThunk("task/put", async (task) => {
   return res.data;
 });
 
-export const fetchAsyncDelete = createAsyncThunk("task/delete", async (id) => {
-  await axios.delete(`${apiUrl}${id}/`, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `JWT ${token}`,
-    },
-  });
-  return id;
-});
+export const fetchAsyncDelete = createAsyncThunk(
+  "task/delete",
+  async (task) => {
+    await axios.delete(`${apiUrl}${task.id}/`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `JWT ${token}`,
+      },
+    });
+    return task;
+  }
+);
 
 const taskSlice = createSlice({
   name: "task",

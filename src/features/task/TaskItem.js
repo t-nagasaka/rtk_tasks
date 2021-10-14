@@ -21,7 +21,7 @@ const TaskItem = ({ task }) => {
         </span>
         <div>
           <button
-            onClick={() => dispatch(fetchAsyncDelete(task.id))}
+            onClick={() => dispatch(fetchAsyncDelete(task))}
             className={styles.taskIcon}
           >
             <BsTrash />
