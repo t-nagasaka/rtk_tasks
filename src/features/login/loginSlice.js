@@ -26,7 +26,7 @@ export const fetchAsyncRegister = createAsyncThunk(
 );
 
 export const fetchAsyncProf = createAsyncThunk("login/get", async () => {
-  const res = await axios.get(`${apiUrl}api/myself`, {
+  const res = await axios.get(`${apiUrl}api/myself/`, {
     headers: {
       Authorization: `JWT ${token}`,
       "Content-Type": "application/json",
